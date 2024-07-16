@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Anemia Sense</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{{ url_for('static', filename='img/favicon.png') }}" rel="icon">
+  <link href="{{ url_for('static', filename='img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Nunito:wght@200;300;400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='vendor/aos/aos.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <style>
+    :root {
+      --primary-color: #3498db;
+      --secondary-color: #e74c3c;
+      --text-color: #2c3e50;
+      --background-color: #ecf0f1;
+    }
+    .hero h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  margin-top: 0; /* Ensure no default margin top */
+}
+
+@media (max-width: 768px) {
+  .hero h1 {
+    margin-top: 20px; /* Adjust this margin as needed */
+  }
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.btn-get-started {
+  font-size: 1.1rem;
+  padding: 15px 40px;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  background-color: var(--primary-color);
+  color: white;
+  text-decoration: none;
+}
+
+.btn-get-started:hover {
+  background-color: #2980b9;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(41, 128, 185, 0.4);
+}
+
+.hero-img {
+  max-width: 80%;
+  margin-top: 50px; /* Adjust top margin for the image */
+}
+
+          
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--background-color);
+      color: var(--text-color);
+    }
+
+    .details-section {
+      background-color: #f9f9f9;
+      padding: 80px 0;
+    }
+
+    .form-container {
+      background-color: #fff;
+      border-radius: 15px;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .form-container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .form-container h3 {
+      font-size: 2rem;
+      color: var(--primary-color);
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .form-container .form-label {
+      font-weight: 500;
+      color: rgb(86, 86, 229);
+      font-size: 1.1rem;
+    }
+
+    .form-container .form-control,
+    .form-container .form-select {
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 1rem;
+      color: var(--text-color);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .form-container .form-control:focus,
+    .form-container .form-select:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+    }
+
+    .form-container .btn-primary {
+      background-color: var(--primary-color);
+      border-color: var(--primary-color);
+      padding: 12px 40px;
+      font-size: 1.1rem;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+    }
+
+    .form-container .btn-primary:hover {
+      background-color: #2980b9;
+      border-color: #2980b9;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(41, 128, 185, 0.4);
+    }
+
+    .about-section {
+      padding: 100px 0;
+      overflow: hidden;
+      background: linear-gradient(135deg, #f6f8fa 0%, #e9f0f5 100%);
+    }
+
+    .section-title {
+      font-size: 3rem;
+      color: var(--primary-color);
+      margin-bottom: 50px;
+      text-align: center;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 4px;
+      background-color: var(--secondary-color);
+      margin: 20px auto 0;
+    }
+
+    .feature-item {
+      background: white;
+      border-radius: 15px;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .feature-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .feature-icon {
+      font-size: 3.5rem;
+      color: var(--secondary-color);
+      margin-bottom: 25px;
+      transition: transform 0.3s ease;
+    }
+
+    .feature-item:hover .feature-icon {
+      transform: scale(1.1);
+    }
+
+    .feature-item h3 {
+      font-size: 1.5rem;
+      color: var(--primary-color);
+      margin-bottom: 15px;
+    }
+
+    .feature-item p {
+      font-size: 1rem;
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    .animate-pulse {
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .blood-cell {
+      width: 50px;
+      height: 50px;
+      background-color: var(--secondary-color);
+      border-radius: 50%;
+      position: absolute;
+      opacity: 0.7;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+
+    .btn-get-started {
+      font-size: 1.1rem;
+      padding: 15px 40px;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      background-color: var(--primary-color);
+      color: white;
+      text-decoration: none;
+    }
+
+    .btn-get-started:hover {
+      background-color: #2980b9;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(41, 128, 185, 0.4);
+    }
+
+    .hero-img {
+      max-width: 80%;
+      margin-top: 50px;
+    }
+    .hero{
+      min-height: 100vh;
+    }
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+        
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .btn-get-started {
+        font-size: 1rem;
+        padding: 12px 30px;
+      }
+
+      .hero-img {
+        max-width: 100%;
+        margin-top: 30px;
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+      }
+
+      .feature-item {
+        padding: 20px;
+      }
+
+      .feature-icon {
+        font-size: 2.5rem;
+      }
+
+      .feature-item h3 {
+        font-size: 1.2rem;
+      }
+
+      .feature-item p {
+        font-size: 0.9rem;
+      }
+
+      .form-container {
+        padding: 20px;
+      }
+
+      .form-container h3 {
+        font-size: 1.5rem;
+      }
+    }
+
+    /* Add a media query for extra small screens */
+    @media (max-width: 576px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero p {
+        font-size: 0.9rem;
+      }
+
+      .btn-get-started {
+        font-size: 0.9rem;
+        padding: 10px 25px;
+      }
+    }
+  </style>
+</head>
+
+<body class="index-page">
+
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+      <a href="/" class="logo d-flex align-items-center me-auto">
+        <h1 class="sitename">Anemia Sense</h1>
+      </a>
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="#hero" class="active">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+      <a class="btn-getstarted" href="#details">Predict</a>
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero section">
+      <div class="hero-bg">
+        <img src="{{ url_for('static', filename='img/hero-bg-light.webp') }}" alt="">
+      </div>
+      <div class="container text-center">
+        <div class="d-flex flex-column justify-content-center align-items-center">
+          <h1 data-aos="fade-up" class="animate__animated animate__fadeInDown">
+            Fuel Your<br class="d-block d-md-none"> <!-- Add line break for small screens -->
+            <span class="text-primary">Wellbeing</span>
+          </h1>
+          <p data-aos="" data-aos-delay="100" class="animate__animated animate__fadeInUp animate__delay-1s">Early detection of anemia through advanced AI</p>
+          <div data-aos="fade-up" data-aos-delay="200">
+            <a href="#details" class="btn-get-started animate__animated animate__bounceIn animate__delay-2s">Predict with details</a>
+          </div>
+          <img src="{{ url_for('static', filename='img/hero-services-img.webp') }}" class="img-fluid hero-img animate__animated animate__zoomIn animate__delay-3s" alt="" data-aos="zoom-out" data-aos-delay="300">
+        </div>
+      </div>
+    </section>
+    
+  <!-- About Section -->
+<section id="about" class="about-section py-5">
+  
+  <div class="container">
+    <h2 class="section-title text-center mb-5 animate__animated animate__fadeInDown">About Anemia Sense</h2>
+    <div class="row gy-4 justify-content-center">
+      <div class="col-lg-10">
+        <div class="card border-0 bg-transparent">
+          <div class="card-body p-0">
+            <div class="row g-0">
+              <div class="col-12 animate__animated animate__fadeInRight">
+                <div class="card-body bg-white rounded h-100 d-flex flex-column justify-content-center p-4 p-md-5">
+                  <h3 class="card-title mb-4 text-primary">Revolutionizing Anemia Detection</h3>
+                  <p class="card-text">Anemia Sense combines cutting-edge AI technology with medical expertise to provide accurate and early detection of anemia. Our mission is to make anemia screening accessible, quick, and reliable for everyone.</p>
+                  <a href="#details" class="btn btn-primary mt-3 align-self-start animate__animated animate__pulse animate__infinite">Try it now</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row gy-4 mt-5">
+      <div class="col-lg-3 col-md-6 animate__animated animate__fadeInUp">
+        <div class="feature-item text-center">
+          <div class="feature-icon mb-4">
+            <i class="bi bi-lightbulb text-primary display-4"></i>
+          </div>
+          <h4 class="mb-3">Smart Detection</h4>
+          <p>Our AI algorithms analyze blood parameters to detect anemia with high accuracy.</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 animate__animated animate__fadeInUp" data-aos-delay="100">
+        <div class="feature-item text-center">
+          <div class="feature-icon mb-4">
+            <i class="bi bi-clock-history text-primary display-4"></i>
+          </div>
+          <h4 class="mb-3">Early Diagnosis</h4>
+          <p>Identify potential anemia risks before symptoms become severe.</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 animate__animated animate__fadeInUp" data-aos-delay="200">
+        <div class="feature-item text-center">
+          <div class="feature-icon mb-4">
+            <i class="bi bi-shield-check text-primary display-4"></i>
+          </div>
+          <h4 class="mb-3">Expert-Backed</h4>
+          <p>Developed in collaboration with hematologists and data scientists.</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 animate__animated animate__fadeInUp" data-aos-delay="300">
+        <div class="feature-item text-center">
+          <div class="feature-icon mb-4">
+            <i class="bi bi-lock text-primary display-4"></i>
+          </div>
+          <h4 class="mb-3">Privacy Focused</h4>
+          <p>Your health data is protected with the highest level of security.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /About Section -->
+
+
+    <!-- Details Section -->
+    <section id="details" class="details-section py-5">
+      <div class="container">
+        <h2 class="section-title text-center mb-4 animate__animated animate__fadeInDown">Details</h2>
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <div class="form-container p-4 p-md-5 shadow rounded bg-white animate__animated animate__fadeInUp">
+              <h3 class="text-center mb-4">Anemia Prediction</h3>
+              <form action="/predict" method="post">
+                <div class="mb-3">
+                  <label for="Gender" class="form-label">Gender</label>
+                  <select class="form-select" id="Gender" name="Gender" required>
+                    <option value="" selected disabled>Select your gender</option>
+                    <option value="1">Male</option>
+                    <option value="0">Female</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="Hemoglobin" class="form-label">Hemoglobin (g/dL)</label>
+                  <input type="number" step="0.1" class="form-control" id="Hemoglobin" name="Hemoglobin" required>
+                </div>
+                <div class="mb-3">
+                  <label for="MCH" class="form-label">MCH (pg)</label>
+                  <input type="number" step="0.1" class="form-control" id="MCH" name="MCH" required>
+                </div>
+                <div class="mb-3">
+                  <label for="MCHC" class="form-label">MCHC (g/dL)</label>
+                  <input type="number" step="0.1" class="form-control" id="MCHC" name="MCHC" required>
+                </div>
+                <div class="mb-3">
+                  <label for="MCV" class="form-label">MCV (fL)</label>
+                  <input type="number" step="0.1" class="form-control" id="MCV" name="MCV" required>
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary btn-lg animate__animated animate__pulse animate__infinite">
+                    <i class="bi bi-search me-2"></i>Get Prediction
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- /Details Section -->
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Contact</h2>
+        <p>Give Us Your Valuable Feedback</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-6">
+            <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="200">
+              <i class="bi bi-geo-alt"></i>
+              <h3>Address</h3>
+              <p>VIT Vellore</p>
+            </div>
+          </div><!-- End Info Item -->
+
+          <div class="col-lg-3 col-md-6">
+            <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="300">
+              <i class="bi bi-telephone"></i>
+              <h3>Call Us</h3>
+              <p>+91 9732972383</p>
+            </div>
+          </div><!-- End Info Item -->
+
+          <div class="col-lg-3 col-md-6">
+            <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="400">
+              <i class="bi bi-envelope"></i>
+              <h3>Email Us</h3>
+              <p>anemia_sense_pjt@gmail.com</p>
+            </div>
+          </div><!-- End Info Item -->
+
+        </div>
+
+        <div class="row gy-4 mt-1">
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
+            <div style="min-width:100%;overflow:hidden;color:red;width:500px;height:500px;"><div id="embed-ded-map-canvas" style="height:100%; width:100%;max-width:100%;"><iframe style="height:100%;width:100%;border:0;" frameborder="0" src="https://www.google.com/maps/embed/v1/place?q=VIT+vellore&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"></iframe></div><a class="embed-ded-maphtml" href="https://www.bootstrapskins.com/themes" id="get-data-for-embed-map">premium bootstrap themes</a><style>#embed-ded-map-canvas img.text-marker{max-width:none!important;background:none!important;}img{max-width:none}</style></div>
+          </div><!-- End Google Maps -->
+
+          <div class="col-lg-6">
+            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="400">
+              <div class="row gy-4">
+
+                <div class="col-md-6">
+                  <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
+                </div>
+
+                <div class="col-md-6 ">
+                  <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
+                </div>
+
+                <div class="col-md-12">
+                  <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
+                </div>
+
+                <div class="col-md-12">
+                  <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
+                </div>
+
+                <div class="col-md-12 text-center">
+                  <div class="loading">Loading</div>
+                  <div class="error-message"></div>
+                  <div class="sent-message">Your message has been sent. Thank you!</div>
+
+                  <button type="submit">Send Message</button>
+                </div>
+
+              </div>
+            </form>
+          </div><!-- End Contact Form -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Contact Section -->
+
+  </main>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/php-email-form/validate.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/aos/aos.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/glightbox/js/glightbox.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/swiper/swiper-bundle.min.js') }}"></script>
+
+  <!-- Main JS File -->
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+  <script>
+    // Blood cell animation
+    function createBloodCell() {
+      const bloodCell = document.createElement('div');
+      bloodCell.classList.add('blood-cell');
+      bloodCell.style.left = Math.random() * window.innerWidth + 'px';
+      bloodCell.style.top = Math.random() * window.innerHeight + 'px';
+      bloodCell.style.animationDuration = (Math.random() * 4 + 4) + 's';
+      document.getElementById('blood-cell-animation').appendChild(bloodCell);
+
+      setTimeout(() => {
+        bloodCell.remove();
+      }, 8000);
+    }
+
+    setInterval(createBloodCell, 1000);
+
+    // Animate form inputs on focus
+    const formInputs = document.querySelectorAll('.form-control, .form-select');
+    formInputs.forEach(input => {
+      input.addEventListener('focus', () => {
+        input.classList.add('animate__animated', 'animate__pulse');
+      });
+      input.addEventListener('blur', () => {
+        input.classList.remove('animate__animated', 'animate__pulse');
+      });
+    });
+
+    // Smooth scroll for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>
